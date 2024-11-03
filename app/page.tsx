@@ -1,101 +1,230 @@
-import Image from "next/image";
+"use client";
+
+import { Plus } from "lucide-react";
+
+import { TooltipProvider } from "@/components/ui/tooltip";
+import { Button } from "@/components/ui/button";
+
+import {
+  Map,
+  MapCategory,
+  MapCategoryTitle,
+  MapContent,
+  MapItem,
+  MapSource,
+  MapTitle,
+} from "./components/Map";
+import {
+  FieldReference,
+  MutationReference,
+  ObjectFieldReference,
+  ObjectTypeReference,
+  QueryReference,
+  Reference,
+  ReferenceLink,
+  SourceReference,
+  TypeReference,
+} from "./components/Reference";
+import {
+  Field,
+  FieldActions,
+  FieldConnectionMarker,
+  FieldDeprecation,
+  FieldDescription,
+  FieldHeader,
+  FieldHeaderPermalink,
+  FieldHeaderSeparator,
+  Fields,
+} from "./components/Field";
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@/components/ui/collapsible";
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarGroup,
+  SidebarGroupLabel,
+  SidebarProvider,
+} from "@/components/ui/sidebar";
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <SidebarProvider>
+      <TooltipProvider>
+        <Sidebar className="font-[family-name:var(--font-inter)]">
+          {/* <SidebarContent>
+            <SidebarGroup>
+              <SidebarGroupLabel>Mutations</SidebarGroupLabel>
+            </SidebarGroup>
+            <SidebarGroup>
+              <SidebarGroupLabel>Objects</SidebarGroupLabel>
+            </SidebarGroup>
+            <SidebarGroup>
+              <SidebarGroupLabel>Queries</SidebarGroupLabel>
+            </SidebarGroup>
+          </SidebarContent> */}
+        </Sidebar>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+        <main className="grid grid-cols-2 gap-12 w-full p-20 font-[family-name:var(--font-inter)]">
+          <div className="col-span-1">
+            <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl mb-4">
+              Post
+            </h1>
+            <p>
+              The <Reference size="inline">Post</Reference> type represents a
+              single entry in the content management system, encapsulating
+              details such as the post's unique identifier, its content, and
+              related comments.
+            </p>
+
+            <div className="my-8" />
+
+            <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight">
+              Fields
+            </h3>
+            <Fields>
+              <Field>
+                <FieldHeader>
+                  <FieldHeaderPermalink name="id" />
+                  <FieldReference weight="strong">id</FieldReference>
+                  <FieldHeaderSeparator />
+                  <TypeReference weight="subtle">ID!</TypeReference>
+                </FieldHeader>
+                <FieldDescription>
+                  The unique identifier for the post.
+                </FieldDescription>
+              </Field>
+
+              <Field>
+                <FieldHeader>
+                  <FieldHeaderPermalink name="comments" />
+                  <FieldReference weight="strong">comments</FieldReference>
+                  <FieldConnectionMarker />
+                  <FieldHeaderSeparator />
+                  <ObjectTypeReference weight="subtle">
+                    CommentsConnection!
+                  </ObjectTypeReference>
+                </FieldHeader>
+                <FieldDescription>
+                  A connection containing the comments associated with the post.
+                  Comments can also be accessed through the{" "}
+                  <QueryReference size="inline">comments</QueryReference> query
+                  and can be created using the{" "}
+                  <MutationReference size="inline">
+                    commentCreate
+                  </MutationReference>{" "}
+                  mutation.
+                </FieldDescription>
+                <FieldActions>
+                  <Collapsible className="group/collapsible">
+                    <CollapsibleTrigger asChild>
+                      <Button variant="outline" size="sm">
+                        <Plus className="w-4 h-4 group-data-[state=open]/collapsible:rotate-45 transition-all" />
+                        Show fields
+                      </Button>
+                    </CollapsibleTrigger>
+                    <CollapsibleContent>
+                      <div className="border-border border-l mt-5 ml-1 pl-3">
+                        <Fields>
+                          <Field>
+                            <FieldHeader>
+                              <FieldReference>id</FieldReference>
+                              <FieldHeaderSeparator />
+                              <TypeReference weight="subtle">ID!</TypeReference>
+                            </FieldHeader>
+                            <FieldDescription>
+                              The unique identifier for the comment.
+                            </FieldDescription>
+                          </Field>
+                        </Fields>
+                      </div>
+                    </CollapsibleContent>
+                  </Collapsible>
+                </FieldActions>
+              </Field>
+
+              <Field>
+                <FieldHeader>
+                  <FieldHeaderPermalink name="content" />
+                  <FieldReference>content</FieldReference>
+                  <FieldHeaderSeparator />
+                  <TypeReference weight="subtle">String!</TypeReference>
+                </FieldHeader>
+                <FieldDescription>
+                  The main body of the post, containing its textual content.
+                </FieldDescription>
+              </Field>
+
+              <Field>
+                <FieldHeader>
+                  <FieldHeaderPermalink name="created" />
+                  <FieldReference>created</FieldReference>
+                  <FieldHeaderSeparator />
+                  <TypeReference weight="subtle">DateTime!</TypeReference>
+                  <FieldDeprecation />
+                </FieldHeader>
+                <FieldDescription>
+                  A timestamp representing the date and time when the post was
+                  created. This field is deprecated; please use{" "}
+                  <Reference size="inline">createdAt</Reference> instead.
+                </FieldDescription>
+              </Field>
+
+              <Field>
+                <FieldHeader>
+                  <FieldHeaderPermalink name="createdAt" />
+                  <FieldReference>createdAt</FieldReference>
+                  <FieldHeaderSeparator />
+                  <TypeReference weight="subtle">DateTime!</TypeReference>
+                </FieldHeader>
+                <FieldDescription>
+                  A timestamp representing the date and time when the post was
+                  created.
+                </FieldDescription>
+              </Field>
+            </Fields>
+          </div>
+
+          <div className="col-span-1">
+            <Map className="sticky top-0">
+              <MapTitle>Map</MapTitle>
+              <MapContent>
+                <MapCategory>
+                  <MapCategoryTitle>Fields and connections</MapCategoryTitle>
+                  <ul>
+                    <MapItem>
+                      <ObjectFieldReference
+                        object="PredictiveSearchResult"
+                        field="posts"
+                      />
+                    </MapItem>
+                    <MapItem>
+                      <ObjectFieldReference object="User" field="posts" />
+                    </MapItem>
+                  </ul>
+                </MapCategory>
+
+                <MapCategory>
+                  <MapCategoryTitle>Possible types in</MapCategoryTitle>
+                  <ul>
+                    <MapItem>
+                      <TypeReference background="plain">
+                        <ReferenceLink href="#">MenuItemResource</ReferenceLink>
+                      </TypeReference>
+                    </MapItem>
+                  </ul>
+                </MapCategory>
+
+                <MapSource>
+                  <SourceReference>Post</SourceReference>
+                </MapSource>
+              </MapContent>
+            </Map>
+          </div>
+        </main>
+      </TooltipProvider>
+    </SidebarProvider>
   );
 }
