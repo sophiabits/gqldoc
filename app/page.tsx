@@ -2,8 +2,14 @@
 
 import { Plus } from "lucide-react";
 
-import { TooltipProvider } from "@/components/ui/tooltip";
 import { Button } from "@/components/ui/button";
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@/components/ui/collapsible";
+import { Sidebar, SidebarProvider } from "@/components/ui/sidebar";
+import { TooltipProvider } from "@/components/ui/tooltip";
 
 import {
   Map,
@@ -36,18 +42,6 @@ import {
   FieldHeaderSeparator,
   Fields,
 } from "./components/Field";
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from "@/components/ui/collapsible";
-import {
-  Sidebar,
-  SidebarContent,
-  SidebarGroup,
-  SidebarGroupLabel,
-  SidebarProvider,
-} from "@/components/ui/sidebar";
 
 export default function Home() {
   return (
